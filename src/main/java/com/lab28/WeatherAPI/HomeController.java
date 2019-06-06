@@ -5,6 +5,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -36,6 +37,17 @@ public class HomeController {
 		System.out.println(response.getBody().getData().getWeather());
 				
 		return new ModelAndView("index", "forecast", response.getBody().getData().getText());
+	}
+	
+	@RequestMapping("/location-form")
+	public ModelAndView findLocation(@RequestParam("lat") Double lat, @RequestParam("lon") Double lon) {
+		
+		RestTemplate rt = new RestTemplate();
+
+		HttpEntity<Weather> entity = null;
+		String url = "https://forecast.weather.gov/MapClick.php?lat=" + lat + "&lon=" + lon + "&FcstType=json";
+		ResponseEntity<Weather> response = rt.exchange(url, HttpMethod.GET, entity, Weather.class);
+		return new ModelAndView("redirect:/", "forecastLocation", response.getBody().getData().getText());
 	}
 
 }
