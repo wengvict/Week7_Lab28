@@ -35,7 +35,7 @@ public class HomeController {
 		System.out.println(response.getBody().getData().getTemperature());
 		System.out.println(response.getBody().getData().getWeather());
 				
-		return new ModelAndView("index", "forecast", response.getBody().getData().getWeather());
+		return new ModelAndView("index", "forecast", response.getBody().getData().getText());
 	}
 
 }

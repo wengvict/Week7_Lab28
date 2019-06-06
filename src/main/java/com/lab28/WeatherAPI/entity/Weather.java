@@ -13,7 +13,7 @@ public class Weather {
 	public Weather() {
 		super();
 	}
-
+	
 	public Weather(String productionCenter, Location location, Time time, Data data) {
 		super();
 		this.productionCenter = productionCenter;
@@ -21,7 +21,7 @@ public class Weather {
 		this.time = time;
 		this.data = data;
 	}
-	
+
 	public String getProductionCenter() {
 		return productionCenter;
 	}
@@ -53,6 +53,7 @@ public class Weather {
 	public void setData(Data data) {
 		this.data = data;
 	}
+	
 	
 	
 
