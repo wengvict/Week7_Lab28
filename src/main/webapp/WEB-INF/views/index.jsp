@@ -11,7 +11,7 @@
 	
 	<h1>Find the Weather for Your City</h1>
 
-	<h3>Please enter the six to seven decimals for the latitude and longitude.</h3>
+	<h3>Please enter six to seven decimals for the latitude and longitude.</h3>
 	<form action="location-form">
 	Latitude: <input type="number" step="any" name="lat" placeholder="Latitude">
 	Longitude: <input type="number" step="any" name="lon" placeholder="Longitude">
@@ -27,9 +27,9 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${forecast }" var="f">
+			<c:forEach items="${forecast }" var="weather">
 				<tr>
-					<td>${f}</td>
+					<td>${weather}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

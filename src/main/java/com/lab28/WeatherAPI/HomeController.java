@@ -17,11 +17,11 @@ public class HomeController {
 	
 	@RequestMapping("/")
 	public ModelAndView home() {
-		RestTemplate rt = new RestTemplate();
-
-		HttpEntity<Weather> entity = null;
-		String url = "https://forecast.weather.gov/MapClick.php?lat=38.4247341&lon=-86.9624086&FcstType=json";
-		ResponseEntity<Weather> response = rt.exchange(url, HttpMethod.GET, entity, Weather.class);
+//		RestTemplate rt = new RestTemplate();
+//
+//		HttpEntity<Weather> entity = null;
+//		String url = "https://forecast.weather.gov/MapClick.php?lat=38.4247341&lon=-86.9624086&FcstType=json";
+//		ResponseEntity<Weather> response = rt.exchange(url, HttpMethod.GET, entity, Weather.class);
 
 		//		Forecast f = null;
 		
@@ -33,10 +33,10 @@ public class HomeController {
 //			f = new Forecast(time, weather, temperature);
 //		}
 //		weather.save(f);
-		System.out.println(response.getBody().getData().getTemperature());
-		System.out.println(response.getBody().getData().getWeather());
+//		System.out.println(response.getBody().getData().getTemperature());
+//		System.out.println(response.getBody().getData().getWeather());
 				
-		return new ModelAndView("index", "forecast", response.getBody().getData().getText());
+		return new ModelAndView("index"); //, "forecast", response.getBody().getData().getText());
 	}
 	
 	@RequestMapping("/location-form")
@@ -47,7 +47,9 @@ public class HomeController {
 		HttpEntity<Weather> entity = null;
 		String url = "https://forecast.weather.gov/MapClick.php?lat=" + lat + "&lon=" + lon + "&FcstType=json";
 		ResponseEntity<Weather> response = rt.exchange(url, HttpMethod.GET, entity, Weather.class);
-		return new ModelAndView("redirect:/", "forecastLocation", response.getBody().getData().getText());
+		
+		System.out.println(response.getBody().getData().getText());
+		return new ModelAndView("index", "forecast", response.getBody().getData().getText());
 	}
 
 }
